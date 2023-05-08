@@ -49,7 +49,9 @@ export default class MyPlugin extends Plugin {
 			if(file?.extension !== 'md') {
 				return;
 			}
-			let isExclude = false;
+			if (!app.metadataCache.getFileCache(file)?.frontmatter) {
+				return;
+			}
 
 			// // 过滤文件
 			// this.settings.mySetting.split(',').forEach(folder => {
